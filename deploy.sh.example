@@ -1,0 +1,4 @@
+#!/bin/bash
+grunt
+lftp -e "mirror -R /path/to/dist/public_html/ /public_html/cword && exit" -u username,password ftp.site.com 
+lftp -e "mirror -R /path/to/dist/cron/ /cron/cword && exit" -u username,password ftp.site.com 
