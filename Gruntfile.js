@@ -68,7 +68,8 @@ module.exports = function(grunt) {
                         src: ['src/*'],
                         dest: 'dist/public_html',
                         filter: 'isFile',
-                        flatten: true
+                        flatten: true,
+                        dot: true
                     },
 
                     // includes files within path and its sub-directories
