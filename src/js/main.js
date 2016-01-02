@@ -60,15 +60,7 @@ var setup = function(){
     if (isNaN(cwordNumber)) CWORD.load('today.json', $('#cl'), $('#word'));
     else CWORD.load('data/' + cwordNumber + '.json', $('#cl'), $('#word'));
     
-    //enable swiping
-    var hammertime = new Hammer(document.getElementById('bdy'));
-    hammertime
-        .on('swipeleft', function(ev) {
-            CWORD.nxt(true);
-        })
-        .on('swiperight', function(ev) {
-            CWORD.nxt();
-        });
+    
 };
 
 
@@ -91,11 +83,38 @@ $(document).ready(function() {
         if(hist.substr(hist.length-8,8)==="32323232") {
             $('#maincontainer').show();
             $('#bdy').off('keyup');
+            hammertime.off('quadrupletap');
             console.log("!!");
             setup();
         }
-        //if(hist.substr(hist.length-8,8))
     });
     
+    //enable swiping
+    var hammertime = new Hammer.Manager(document.getElementById('bdy'));
+    hammertime.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
+    hammertime.add( new Hammer.Press({ event: 'press', time: 3000 }) );
+    hammertime.add( new Hammer.Swipe({ event: 'swipeleft', direction: Hammer.DIRECTION_LEFT }) );
+    hammertime.add( new Hammer.Swipe({ event: 'swiperight', direction: Hammer.DIRECTION_RIGHT }) );
     
+    hammertime
+        .on('quadrupletap', function(ev) {
+            $('#maincontainer').show();
+            $('#bdy').off('keyup');
+            hammertime.off('quadrupletap');
+            console.log("!!!");
+            setup();
+        })
+        .on('press', function(ev) {
+            $('#maincontainer').show();
+            $('#bdy').off('keyup');
+            hammertime.off('quadrupletap');
+            console.log("!!!");
+            setup();
+        })
+        .on('swipeleft', function(ev) {
+            CWORD.nxt(true);
+        })
+        .on('swiperight', function(ev) {
+            CWORD.nxt();
+        });
 });
