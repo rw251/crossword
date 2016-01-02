@@ -1,0 +1,6 @@
+<?php
+
+define("MAILGUN_API",'key-my-mailgun-key');
+define("DOMAIN",'my-domain');
+
+?>

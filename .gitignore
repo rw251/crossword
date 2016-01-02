@@ -4,3 +4,4 @@ deploy.sh
 
 /dist/*
 !/dist/cron/
+/dist/cron/config.php

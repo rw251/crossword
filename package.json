@@ -14,7 +14,8 @@
     "grunt-uncss": "^0.3.7"
   },
   "devDependencies": {
-    "grunt-strip-code": "^0.1.2"
+    "grunt-strip-code": "^0.1.2",
+    "grunt-contrib-clean": "^0.7.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

@@ -5,6 +5,8 @@ $mmm = dirname(__FILE__);
 ///- Change to the file's directory
 chdir(dirname(__FILE__));
 include '../../cron/cword/get-cword.php';
+include '../../cron/cword/email.php';
+mg_send("1234richardwilliams@gmail.com","Hello","A message on the hour");
 try {
     ///- Set the flag to either cryptic (mon-fri) or prize (sat)
     $type = "cryptic";
@@ -23,12 +25,12 @@ try {
         if ($id == 0) {
             //ERROR
             //email that couldn't identify the crossword
-            mail('rw251@yahoo.co.uk', 'Cron Job Running', 'Cant identify todays crossword - last one is: ' . $last);
+            mg_send('rw251@yahoo.co.uk', 'Cron Job Running', 'Cant identify todays crossword - last one is: ' . $last);
             return;
         } else if ($last > $id) {
             //ERROR
             //email last > today
-            mail('rw251@yahoo.co.uk', 'Cron Job Running', 'LAST: ' . $last . ' is greater than TODAY:' . $id);
+            mg_send('rw251@yahoo.co.uk', 'Cron Job Running', 'LAST: ' . $last . ' is greater than TODAY:' . $id);
             return;
         } else if ($last == $id) {
             return;
@@ -43,7 +45,7 @@ try {
             
             ///- If fewer than 10 clues then something is amiss
             if(sizeof($output['clues']) < 10){
-                mail('rw251@yahoo.co.uk', 'Cron Job Running', 'Crossword has ' . sizeof($output['clues']). ' clues - something is wrong');
+                mg_send('rw251@yahoo.co.uk', 'Cron Job Running', 'Crossword has ' . sizeof($output['clues']). ' clues - something is wrong');
                 return;
             } else {
             
@@ -61,10 +63,10 @@ try {
                 chmod('../../public_html/cword/data/' . $i . '.json', 0755);
             }
         }
-        mail('rw251@yahoo.co.uk', 'Cron Job Running', 'Done: from: ' . $last . ' up to:' . $id);
+        mg_send('rw251@yahoo.co.uk', 'Cron Job Running', 'Done: from: ' . $last . ' up to:' . $id);
     }
 }
 catch (Exception $e) {
-    mail('rw251@yahoo.co.uk', 'Cron Job Running', 'Caught exception: ' . $e->getMessage());
+    mg_send('rw251@yahoo.co.uk', 'Cron Job Running', 'Caught exception: ' . $e->getMessage());
 }
 ?>	

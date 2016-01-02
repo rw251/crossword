@@ -116,7 +116,8 @@ module.exports = function(grunt) {
                 // a list of files you want to strip code from
                 src: "dist/public_html/js/*.js"
             }
-        }
+        },
+        clean: ["dist/public_html"]
     });
 
     // Load the plugins
@@ -128,9 +129,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-cache-bust');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-strip-code');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
     // Default tasks.
-    grunt.registerTask('default', ['copy:default', 'uncss', 'cssmin', 'concat', 'strip_code', 'uglify', 'processhtml', 'cacheBust']);
+    grunt.registerTask('default', ['clean', 'copy:default', 'uncss', 'cssmin', 'concat', 'strip_code', 'uglify', 'processhtml', 'cacheBust']);
     grunt.registerTask('dev', ['copy:default', 'uncss', 'cssmin', 'concat', 'strip_code', 'uglify', 'processhtml', 'copy:dev', 'cacheBust']);
 
 };
