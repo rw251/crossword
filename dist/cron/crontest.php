@@ -6,7 +6,7 @@ $mmm = dirname(__FILE__);
 chdir(dirname(__FILE__));
 include '../../cron/cword/get-cword.php';
 include '../../cron/cword/email.php';
-mg_send("1234richardwilliams@gmail.com","Hello","A message on the hour");
+
 try {
     ///- Set the flag to either cryptic (mon-fri) or prize (sat)
     $type = "cryptic";
