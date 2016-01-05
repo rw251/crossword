@@ -7,19 +7,14 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" name="viewport">
     <meta content="An easier way of doing the crossword" name="description">
     <meta content="Richard Williams" name="author">
-    <link type="image/vnd.microsoft.icon" sizes="16x16 32x32 48x48 64x64" href="favicon.ico" rel="icon">
-    <title>C-Word</title>
-    
-    <!-- build:css css/tidy.min.css -->
-    <link rel="stylesheet" href="css/bootstrap.slate.css">
-    <link rel="stylesheet" href="css/cword.css">
-    <!-- /build -->
+    <link type="image/vnd.microsoft.icon" sizes="16x16 32x32 48x48 64x64" href="/favicon.ico" rel="icon">
+    <title>C-Word Beta</title>
 </head>
 
 <body role="document" id="bdy">
-    <div id="maincontainer" style="display:none" class="container theme-showcase" role="main">
+    <div id="maincontainer" class="container theme-showcase" role="main">
         <div class="header hidden-xs">
-            <h3 class="text-muted">C-Word</h3>
+            <h3 class="text-muted">C-Word Beta</h3>
         </div>
 
         <div id="mmm">
@@ -31,20 +26,16 @@
                 </span>
 
                 <input id="word" class="form-control input-lg" type="text">
-
+                <input id="word2" class="form-control input-lg" type="text">
+                <div id="ttt"></div>
                 <span class="input-group-btn hidden-xs">
                     <button id="btn-next" class="btn btn-default btn-lg" type="button">
                       <span class="glyphicon glyphicon-arrow-right"></span>
                 </button>
                 </span>
             </div>
-            <h4 id="cl">Loading...</h4>
         </div>
-        
-        <div class="row hidden-md hidden-lg" id="swiper">
-            <span>⇤ Swipe ⇥</span>
-        </div>
-
+ 
         <div class="row">
             <button id="btn-options" type="button" class="btn btn-default btn-lg pull-right">
                 <span class="glyphicon glyphicon-cog"></span>
@@ -91,28 +82,9 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     
-    <!-- build:js js/aggregated.min.js -->
-    <script src="js/jquery.crosswordinput.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="js/cword.js"></script>
-    <script src="js/hammer.js"></script>
-    <!-- /build -->
-    <script>
-        (function(i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r;
-            i[r] = i[r] || function() {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date();
-            a = s.createElement(o),
-                m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
-            m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-11636657-6', 'auto');
-        ga('send', 'pageview');
-    </script>
+    <script src="jquery.maskedinput.js"></script>
+    <script src="bootstrap.js"></script>
+    <script src="cword.js?v=66"></script>
 </body>
 
 </html>

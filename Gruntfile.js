@@ -24,7 +24,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 // the files to concatenate
-                src: ['src/js/bootstrap.js', 'src/js/jquery.crosswordinput.js', 'src/js/hammer.js', 'src/js/cw.js', 'src/js/main.js'],
+                src: ['src/js/bootstrap.js', 'src/js/hammer.js', 'src/js/cw.js', 'src/js/main.js'],
                 // the location of the resulting JS file
                 dest: 'dist/public_html/js/aggregated.js'
             }
@@ -77,6 +77,14 @@ module.exports = function(grunt) {
                         expand: true,
                         src: ['src/fonts/*'],
                         dest: 'dist/public_html/fonts',
+                        filter: 'isFile',
+                        flatten: true
+                    },
+                    //beta
+                    {
+                        expand: true,
+                        src: ['src/beta/*'],
+                        dest: 'dist/public_html/beta',
                         filter: 'isFile',
                         flatten: true
                     }
