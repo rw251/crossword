@@ -117,6 +117,27 @@
                     prevVal = val;
                 }
             });
+            
+            inputEl.off('keyup');
+            inputEl.on('keyup', function(e){
+                cp = inputEl.getCursorPosition();
+                var goright = false;
+                
+                //if cursor left
+                if (e.which === 37) {
+                    cp--;
+                }
+                
+                else if (e.which === 39) {
+                    goright = true;
+                    cp++;
+                }
+                
+                cp = nextCell(inputEl, goright, cp);
+                inputEl.setCursorPosition(cp);
+
+                e.preventDefault();
+            });
 
             inputEl.off('keypress');
             inputEl.on('keypress', function(e) {
@@ -131,10 +152,6 @@
                     val = val.substr(0, cp) + '_' + val.substr(cp + 1);
                 }
 
-                //if cursor left
-                else if (e.which === 37) {
-                    cp--;
-                }
                 else if (cp === val.length) {
 
                 }
