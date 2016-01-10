@@ -83,7 +83,7 @@ $(document).ready(function() {
         if(hist.substr(hist.length-8,8)==="32323232") {
             $('#maincontainer').show();
             $('#bdy').off('keyup');
-            hammertime.off('quadrupletap');
+            hammertime.off('press');
             console.log("!!");
             setup();
         }
@@ -91,23 +91,15 @@ $(document).ready(function() {
     
     //enable swiping
     var hammertime = new Hammer.Manager(document.getElementById('bdy'));
-    hammertime.add( new Hammer.Tap({ event: 'quadrupletap', taps: 4 }) );
     hammertime.add( new Hammer.Press({ event: 'press', time: 3000 }) );
     hammertime.add( new Hammer.Swipe({ event: 'swipeleft', direction: Hammer.DIRECTION_LEFT }) );
     hammertime.add( new Hammer.Swipe({ event: 'swiperight', direction: Hammer.DIRECTION_RIGHT }) );
     
     hammertime
-        .on('quadrupletap', function(ev) {
-            $('#maincontainer').show();
-            $('#bdy').off('keyup');
-            hammertime.off('quadrupletap');
-            console.log("!!!");
-            setup();
-        })
         .on('press', function(ev) {
             $('#maincontainer').show();
             $('#bdy').off('keyup');
-            hammertime.off('quadrupletap');
+            hammertime.off('press');
             console.log("!!!");
             setup();
         })

@@ -51,7 +51,7 @@ module.exports = function(grunt) {
                 encoding: 'utf8',
                 algorithm: 'md5',
                 length: 16,
-                rename: false
+                deleteOriginals: true
             },
             assets: {
                 files: [{
