@@ -23,9 +23,16 @@
 - crossword 26404 has first clue as "see x" - appears to break a bit..
 */
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('service-worker.js');
+}
+
 var elLoad, elCid;
 
 var setup = function(){
+    $('#maincontainer').show();
+    $('#bdy').off('keyup');
+    hammertime.off('press');
     $('#swiper').hide().delay(10000).fadeToggle(1500).delay(2000).fadeToggle(2000);
 
     $('#btn-previous').on('click', function(e) {
@@ -59,10 +66,9 @@ var setup = function(){
     var cwordNumber = parseInt(window.location.search.replace("?", ""), 10);
     if (isNaN(cwordNumber)) CWORD.load('today.json', $('#cl'), $('#word'));
     else CWORD.load('data/' + cwordNumber + '.json', $('#cl'), $('#word'));
-    
-    
 };
 
+var hammertime;
 
 $(document).ready(function() {
     //Quick hack to remove url bar on mobile devices
@@ -81,26 +87,18 @@ $(document).ready(function() {
         hist += e.which;
         console.log(hist);
         if(hist.substr(hist.length-8,8)==="32323232") {
-            $('#maincontainer').show();
-            $('#bdy').off('keyup');
-            hammertime.off('press');
-            console.log("!!");
             setup();
         }
     });
     
     //enable swiping
-    var hammertime = new Hammer.Manager(document.getElementById('bdy'));
+    hammertime = new Hammer.Manager(document.getElementById('bdy'));
     hammertime.add( new Hammer.Press({ event: 'press', time: 3000 }) );
     hammertime.add( new Hammer.Swipe({ event: 'swipeleft', direction: Hammer.DIRECTION_LEFT }) );
     hammertime.add( new Hammer.Swipe({ event: 'swiperight', direction: Hammer.DIRECTION_RIGHT }) );
     
     hammertime
         .on('press', function(ev) {
-            $('#maincontainer').show();
-            $('#bdy').off('keyup');
-            hammertime.off('press');
-            console.log("!!!");
             setup();
         })
         .on('swipeleft', function(ev) {
@@ -109,4 +107,8 @@ $(document).ready(function() {
         .on('swiperight', function(ev) {
             CWORD.nxt();
         });
+        
+    if(window.matchMedia('(display-mode: standalone)').matches){
+        setup();
+    }
 });
