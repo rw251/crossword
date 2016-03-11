@@ -8,11 +8,11 @@ function getMostRecentSuccess(){
 
 function getLatest($type){
     //Get latest from site
-    $f     = file_get_html('http://www.theguardian.com/crosswords');
+    $f     = file_get_html('https://www.theguardian.com/crosswords');
     $today = 0;
     foreach ($f->find('a') as $link) {
-        if (preg_match("/http:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/[0-9]*$/", $link->href)) {
-            $today = (int) preg_replace("/http:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/([0-9]+)$/", "$1", $link->href);
+        if (preg_match("/https:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/[0-9]*$/", $link->href)) {
+            $today = (int) preg_replace("/https:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/([0-9]+)$/", "$1", $link->href);
             break;
         }
     }
@@ -20,11 +20,11 @@ function getLatest($type){
     if($today > 0) return $today;
     
     //Try to get it another way
-    $f     = file_get_html('http://www.theguardian.com/crosswords/series/' . $type);
+    $f     = file_get_html('https://www.theguardian.com/crosswords/series/' . $type);
     $today = 0;
     foreach ($f->find('a') as $link) {
-        if (preg_match("/http:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/[0-9]*$/", $link->href)) {
-            $today = (int) preg_replace("/http:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/([0-9]+)$/", "$1", $link->href);
+        if (preg_match("/https:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/[0-9]*$/", $link->href)) {
+            $today = (int) preg_replace("/https:\/\/www\.theguardian\.com\/crosswords\/" . $type . "\/([0-9]+)$/", "$1", $link->href);
             break;
         }
     }
@@ -106,7 +106,7 @@ function getCrosswordBeta($html, $type, $number, $debug){
 
 function getCrossword($type, $number, $debug){
     
-    $url = 'http://www.theguardian.com/crosswords/' . $type . '/' . $number;
+    $url = 'https://www.theguardian.com/crosswords/' . $type . '/' . $number;
     if($debug) { echo "URL: $url<br>"; } 
     $html = file_get_html($url);
     $kk = 0;
@@ -122,7 +122,7 @@ function getCrossword($type, $number, $debug){
     else {
         ///try other type
         $type = ($type=="cryptic" ? "prize" : "cryptic");
-        $url = 'http://www.theguardian.com/crosswords/' . $type . '/' . $number;
+        $url = 'https://www.theguardian.com/crosswords/' . $type . '/' . $number;
         if($debug) { echo "URL: $url<br>"; } 
         $html = file_get_html($url);
         $kk = 0;
